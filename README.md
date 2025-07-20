@@ -1,7 +1,5 @@
 # UNIT-PROJECT-2
 
-# UNIT-PROJECT-2
-
 ## Create a Project of your own choosing
 
 Base on what you’ve learned until now , create a project of your choosing. Impress us with your creativity and execution.
