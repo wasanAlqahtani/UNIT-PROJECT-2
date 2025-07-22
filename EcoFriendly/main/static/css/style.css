@@ -1,11 +1,13 @@
-
 .page {
-    font-family: "Montserrat", sans-serif;
-    background-image: url('/static/images/forest.jpg'); 
-    background-size: cover;
-    background-position: center;
-    min-height: 100vh;
-  }
+  font-family: "Montserrat", sans-serif;
+  background-image: url('/static/images/forest.jpg');
+  background-size: cover;
+  background-position: center;
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+  /* Let content flow normally */
+}
  .custom-navbar {
   border-bottom: 1px solid #dee2e6;
   background-color: #fff !important;
@@ -19,6 +21,7 @@
  color: #198754;
  text-decoration: none;
  font-size: 1.25rem;
+ margin-left: 1.25rem;
 }
 
   .navbar-nav .nav-link {
@@ -29,11 +32,11 @@
 
   .navbar-nav .nav-link:hover, .navbar-nav .nav-link.active {
     text-decoration: underline;
-    color: #198754; 
+    color: #198754 !important; 
   }
 
 .challenge-button{
-    background-color: #198754;
+    background-color: #198754; 
     border-radius: 4rem;
     text-decoration: none;
     color:black;
@@ -41,12 +44,12 @@
     height: 3rem;
     text-align: center;
     font-size: 1rem;
-   padding: 0.5rem;
+    padding-top: 6%;
 }
 #themeDropdown .btn {
-  background: transparent !important;
-  border: none !important;
-  box-shadow: none !important;
+  background: transparent ;
+  border: none;
+  box-shadow: none;
   color: #333; /* Or white if in dark mode */
   padding: 0.5rem;
   font-size: 1.2rem;
@@ -60,4 +63,196 @@
 #themeDropdown .material-symbols-outlined {
   font-size: 24px;
 }
+
+.home-content {
+  background-color: rgba(255, 255, 255, 0.85);
+  width: 80%;
+  padding: 5%;
+  margin-top: 10%;
+  border-radius: 1.5rem;
+  margin: 2rem auto;
+  flex-grow: 1; /* take remaining vertical space */
+  overflow-y: auto;
+  display: flex;
+  flex-direction: column;
+  gap: 2rem;
+}
+
+
+
+.top-section {
+  background-color: white;
+  width: 100%;
+  padding: 2rem;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  border-radius: 1.5rem;
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+}
+
+.top-section h2 {
+  font-weight: 800; 
+  align-content: center;     
+  align-items: center;
+  color: #198754;         
+}
+
+.top-section p {
+  font-weight: 600;       
+  color: #145235;  
+}
+
+.tip-slider {
+  height: 2.5rem; /* height of one tip */
+  overflow: hidden;
+  width: 100%;
+  text-align: center;
+  position: relative;
+}
+
+.tip-list {
+  display: flex;
+  flex-direction: column;
+  animation: slideUp 20s steps(10) infinite;
+}
+
+.tip-list p {
+  margin: 0;
+  height: 2.5rem;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-weight: 600;
+  opacity: 0.9;
+}
+
+@keyframes slideUp {
+  from {
+    transform: translateY(0);
+  }
+  to {
+    transform: translateY(-100%);
+  }
+}
+
+.bottom-section {
+  background-color: (255, 255, 255, 0.85);/* same as .home-content */
+  width: 100%;
+  padding: 2rem;
+  border-radius: 1.5rem;
+}
+.latest{
+  display:flex;
+  flex-direction: row;
+  justify-content: space-between;
+}
+.latest h3 {
+  font-weight: 600; 
+  align-content: center;     
+  align-items: center;
+  color: #198754;     
+}
+.latest a{
+  text-decoration: none;
+}
+.contact {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  width: 100%;
+}
+
+.contact h1 {
+  font-weight: 600;
+  text-align: center;
+  color: #198754;
+  margin-bottom: 1.5rem;
+}
+
+.contact form {
+  width: 100%;
+  max-width: 600px;
+  padding: 2rem;
+  background-color: #fff;
+  border-radius: 1rem;
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+}
+
+.submit-btn {
+  background-color: #198754 !important;
+  border: none !important;
+  color: white;
+}
+.add-page {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  width: 100%;
+}
+
+.add-page h1 {
+  font-weight: 600;
+  text-align: center;
+  color: #198754;
+}
+
+.add-page form {
+  width: 100%;
+  max-width: 600px;
+  padding: 2rem;
+  background-color: #fff;
+  border-radius: 1rem;
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+}
+
+.add-btn {
+  background-color: #198754 !important;
+  border: none !important;
+}
+.latest-actions-row {
+  justify-content: flex-start; /* Align cards left */
+  gap: 1rem; /* optional spacing */
+}
+
+.eco-card {
+  width: 100%; /* full width inside col */
+  max-width: 280px; /* max width for each card */
+  min-width: 250px; /* minimum width */
+  border-radius: 1rem;
+  background-color: #198754;
+  display: flex;
+  flex-direction: column;
+}
+
+.eco-card img {
+  height: 180px; 
+  object-fit: cover;
+}
+
+.eco-card-title,
+.eco-card p {
+  color: black;
+}
+
+@media (max-width: 768px) {
+  .eco-card {
+    max-width: 100%; 
+  }
+}
+
+#locationChart {
+  width: 50%;
+  height: 50%;
+  display: block;
+  margin: 0 auto;
+}
+
+.titles{
+  font-weight: 600;
+  color: #198754;
+}
+
 

@@ -1,0 +1,66 @@
+{% extends 'main/base.html' %}
+
+{% block title %}
+All Actions Page
+{% endblock %}
+
+{% block head %}
+  {{ block.super }}
+  <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+{% endblock %}
+
+{% block content %}
+<h2 class="titles">Actions by Location (Pie Chart)</h2>
+<canvas id="locationChart"></canvas>
+
+<script>
+  // Assign JSON data safely to JS variables
+const labels = JSON.parse('{{ labels|escapejs }}');
+const data = JSON.parse('{{ counts|escapejs }}');
+
+  const ctx = document.getElementById('locationChart').getContext('2d');
+  new Chart(ctx, {
+      type: 'pie',
+      data: {
+          labels: labels,
+          datasets: [{
+              label: 'Number of Actions',
+              data: data,
+           backgroundColor: [
+  'rgba(0, 128, 0, 0.7)',     // dark green
+  'rgba(34, 139, 34, 0.7)',   // forest green
+  'rgba(60, 179, 113, 0.7)',  // medium sea green
+  'rgba(144, 238, 144, 0.7)', // light green
+  'rgba(0, 255, 127, 0.7)',   // spring green
+  'rgba(46, 139, 87, 0.7)'    // sea green
+],
+              borderColor: 'rgba(255, 255, 255, 1)',
+              borderWidth: 1
+          }]
+      }
+  });
+</script>
+
+
+  <div class="title">
+    <h3 class="title">All Actions</h3>
+<br> 
+  <div class="row latest-actions-row">
+    {% for action in actions %}
+      <div class="col-md-4 col-lg-3 mb-4 d-flex">
+        <div class="card eco-card">
+          <img src="{{ action.image.url }}" class="card-img-top" alt="{{ action.title }}" />
+          <div class="card-body">
+            <h6 class="eco-card-title mb-2">{{ action.title }}</h6>
+            <p>
+              {{ action.description|truncatewords:5 }}...
+              <a href="{% url 'eco:detail_view' action.id %}" class="text-decoration-none text-success">Read more</a>
+            </p>
+            <p><strong>📍 {{ action.location }}</strong></p>
+          </div>
+        </div>
+      </div>
+    {% endfor %}
+  </div>
+</div>
+{% endblock %}

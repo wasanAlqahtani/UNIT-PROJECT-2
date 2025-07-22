@@ -1,0 +1,32 @@
+{% extends 'main/base.html' %}
+
+{% block title %}
+Add Action Page
+{% endblock %}
+
+{% block content %}
+<div class="col-lg-8 add-page">
+  <h1 class="fw-bold text-center mb-4">Add Action</h1>
+  <form class="d-flex flex-column gap-3" action="{% url 'eco:new_action_view' %}" method="POST" enctype="multipart/form-data">
+    {% csrf_token %}
+    <input type="text" placeholder="Title" name="title" class="form-control" required/>
+    <textarea placeholder="Description" name="description" class="form-control" required></textarea>
+    <input type="file" name="image" class="form-control" required/>
+
+  <div class="d-flex gap-2 align-items-center"> 
+  <h5 class="m-0 p-0">Location:</h5>
+      <div class="category"> 
+    {% for val, label in LocationChoices %}
+        <input type="radio" id="{{ val }}" name="loaction" value="{{ val }}"
+        {% if action.loction == val %}checked{% endif %}>
+        <label for="{{ val }}">{{ label }}</label>
+    {% endfor %}
+    </div>
+
+</div>
+
+    <button type="submit" class="btn btn-primary add-btn">Add</button>
+  </form>
+</div>
+
+    {% endblock %}

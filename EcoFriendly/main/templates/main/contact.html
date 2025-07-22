@@ -1,0 +1,40 @@
+{% extends 'main/base.html' %}
+
+{% block title %}
+Contact Page
+{% endblock %}
+
+{% block content %}
+    <div class="col-lg-6 contact">
+     <h1 class="fw-bold">Contact us</h1>
+      <form action="{% url 'main:contact_view' %}" method="POST" enctype="multipart/form-data" class="d-flex flex-column gap-3">
+        {% csrf_token %}
+
+        <div class="row">
+          <div class="col">
+            <label class="form-label">First name</label>
+            <input type="text" class="form-control" name="first_name" required>
+          </div>
+          <div class="col">
+            <label class="form-label">Last name</label>
+            <input type="text" class="form-control" name="last_name" required>
+          </div>
+        </div>
+
+        <div>
+          <label class="form-label">Email address</label>
+          <input type="email" class="form-control"name="email" required>
+        </div>
+
+        <div>
+          <label class="form-label">Your message</label>
+          <textarea class="form-control" placeholder="Enter your message" name="message" required></textarea>
+        </div>
+        <button type="submit" class="btn w-100 submit-btn">Submit</button>
+      </form>
+    </div>
+
+
+
+
+{% endblock %}

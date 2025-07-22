@@ -11,7 +11,10 @@
     <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@0,100..900;1,100..900&family=Phudu:wght@300..900&family=Roboto:ital,wght@0,100..900;1,100..900&family=Ubuntu:ital,wght@0,300;0,400;0,500;0,700;1,300;1,400;1,500;1,700&display=swap" rel="stylesheet">
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
     <title>{% block title %} {% endblock %}</title>
+    {% block head %}
+    {% endblock %}
 </head>
  
 <!-- Body Section -->
@@ -22,22 +25,22 @@
   <div class="container justify-content-between align-items-center">
 
     <!-- Left Logo -->
-    <a class="Logo" href="#">EcoFriendly</a>
+    <a class="Logo" href="#"> <strong>EcoFriendly</strong></a>
 
     <!-- Centered Nav Items -->
     <div class="d-none d-lg-flex mx-auto">
       <ul class="navbar-nav flex-row gap-4">
         <li class="nav-item">
-          <a class="nav-link active" href="#">Home</a>
+          <a class="nav-link {% if request.resolver_match.url_name == 'home_view' %}active{% endif %}" href="{% url 'main:home_view' %}">Home</a>
         </li>
         <li class="nav-item">
-          <a class="nav-link" href="#">All Actions</a>
+          <a class="nav-link {% if request.resolver_match.url_name == 'all_action_view' %}active{% endif %}" href="{% url 'eco:all_action_view' %}">All Actions</a>
         </li>
                 <li class="nav-item">
-          <a class="nav-link" href="#">Add Action</a>
+          <a class="nav-link {% if request.resolver_match.url_name == 'new_action_view' %}active{% endif %}" href="{% url 'eco:new_action_view' %}">Add Action</a>
         </li>
                 <li class="nav-item">
-          <a class="nav-link" href="#">Contact Us</a>
+          <a class="nav-link {% if request.resolver_match.url_name == 'contact_view' %}active{% endif %}" href="{% url 'main:contact_view' %}">Contact Us</a>
         </li>
       </ul>
     </div>
@@ -61,9 +64,12 @@
     </div>
   </div>
 </nav>
+<div class="home-content"> 
+
             {% block content %}
 
             {% endblock %}
+            </div>
               </div>
 
 </body>
