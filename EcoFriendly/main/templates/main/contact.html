@@ -5,7 +5,7 @@ Contact Page
 {% endblock %}
 
 {% block content %}
-    <div class="col-lg-6 contact">
+    <div class="col-lg-6 mx-auto contact">
      <h1 class="fw-bold">Contact us</h1>
       <form action="{% url 'main:contact_view' %}" method="POST" enctype="multipart/form-data" class="d-flex flex-column gap-3">
         {% csrf_token %}

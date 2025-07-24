@@ -1,20 +1,30 @@
 from django.shortcuts import render,redirect
 from django.http import HttpRequest, HttpResponse
-from eco.models import Action
+from django.db.models import Avg
+from eco.models import Action, Comment
 from main.models import Contact
 # Create your views here.
-def home_view(request:HttpRequest):
-    actions = Action.objects.all().order_by('-created_at')[0:4]
-    remainder_tips = ["Reduce Single-Use Plastics",
-                      "Conserve Energy", "Minimize Food Waste",
-                      "Choose Sustainable Transportation" ,
-                      "Opt for Eco-Friendly Products",
-                       "Embrace Reusables",
-                        "Support Local and Sustainable Brands", 
-                         "Practice Water Conservation",
-                         "Go Paperless", 
-                         "Educate and Inspire Others"]
-    return render(request, 'main/home.html',{"tips":remainder_tips,"actions":actions})
+def home_view(request: HttpRequest):
+    actions = Action.objects.annotate(avg_rating=Avg('comment__rating')).order_by('-created_at')[:4]
+
+    remainder_tips = [
+        "Reduce Single-Use Plastics",
+        "Conserve Energy",
+        "Minimize Food Waste",
+        "Choose Sustainable Transportation",
+        "Opt for Eco-Friendly Products",
+        "Embrace Reusables",
+        "Support Local and Sustainable Brands",
+        "Practice Water Conservation",
+        "Go Paperless",
+        "Educate and Inspire Others"
+    ]
+
+    return render(request, 'main/home.html', {
+        "tips": remainder_tips,
+        "actions": actions,
+        "RatingChoices": Comment.RatingChoices.choices  # pass labels to the template
+    })
 
 def contact_view(request:HttpRequest):
     if request.method == "POST":
@@ -31,3 +41,4 @@ def messages_view(request:HttpRequest):
 
     message = Contact.objects.all()
     return render(request,"main/messages.html",{"message": message})
+

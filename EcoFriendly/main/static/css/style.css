@@ -6,63 +6,55 @@
   min-height: 100vh;
   display: flex;
   flex-direction: column;
-  /* Let content flow normally */
+
 }
- .custom-navbar {
-  border-bottom: 1px solid #dee2e6;
-  background-color: #fff !important;
-  border-radius: 2rem;
-  padding: 0.5rem 1rem;
+.custom-navbar {
+  background-color: rgba(255, 255, 255, 0.85) !important;
+  border-radius: 1.5rem;
   width: 80%;
-  margin: 1.5rem auto 0 auto; /* center and push slightly down */
-  box-shadow: 0 4px 6px rgba(0,0,0,0.1);
-}
-.Logo{
- color: #198754;
- text-decoration: none;
- font-size: 1.25rem;
- margin-left: 1.25rem;
+  margin: auto;
+  padding: 0.5rem 1rem;
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
 }
 
-  .navbar-nav .nav-link {
-    color: #333;
-    font-weight: 500;
-    transition: all 0.3s ease;
-  }
 
-  .navbar-nav .nav-link:hover, .navbar-nav .nav-link.active {
-    text-decoration: underline;
-    color: #198754 !important; 
-  }
-
-.challenge-button{
-    background-color: #198754; 
-    border-radius: 4rem;
-    text-decoration: none;
-    color:black;
-    width:9rem;
-    height: 3rem;
-    text-align: center;
-    font-size: 1rem;
-    padding-top: 6%;
+.logo-text {
+  color: #145235 !important;
+  font-weight: bold;
 }
-#themeDropdown .btn {
-  background: transparent ;
+.nav-text{
+  font-weight: bold !important;
+}
+.nav-text:hover {
+  color: black;
+}
+.nav-text.active{
+  color:#145235 !important;
+  text-decoration: underline #145235;
+}
+
+
+.challenge-btn {
+  background-color: #1b5e20 !important;
+  color: white !important;
+  font-weight: bold;
   border: none;
-  box-shadow: none;
-  color: #333; /* Or white if in dark mode */
-  padding: 0.5rem;
-  font-size: 1.2rem;
 }
 
-#themeDropdown .btn:hover {
-  background-color: rgba(0, 0, 0, 0.05); /* Optional subtle hover effect */
-  border-radius: 50%; /* Optional round look on hover */
+.challenge-btn:hover {
+  background-color: #1b5e20 !important;
 }
 
-#themeDropdown .material-symbols-outlined {
+.mode-icon span {
+  color:  #1b5e20  !important;
   font-size: 24px;
 }
+
+
+.mode-icon:hover span {
+  color: black;
+}
+
 
 .home-content {
   background-color: rgba(255, 255, 255, 0.85);
@@ -137,7 +129,7 @@
 }
 
 .bottom-section {
-  background-color: (255, 255, 255, 0.85);/* same as .home-content */
+  background-color: (255, 255, 255, 0.85);
   width: 100%;
   padding: 2rem;
   border-radius: 1.5rem;
@@ -159,7 +151,6 @@
 .contact {
   display: flex;
   flex-direction: column;
-  justify-content: center;
   align-items: center;
   width: 100%;
 }
@@ -213,16 +204,14 @@
   border: none !important;
 }
 .latest-actions-row {
-  justify-content: flex-start; /* Align cards left */
-  gap: 1rem; /* optional spacing */
+  justify-content: flex-start;
+  gap: 1rem; 
 }
 
 .eco-card {
-  width: 100%; /* full width inside col */
-  max-width: 280px; /* max width for each card */
-  min-width: 250px; /* minimum width */
-  border-radius: 1rem;
-  background-color: #198754;
+  width: 100%;
+  max-width: 100%;
+  border-radius: 4rem;
   display: flex;
   flex-direction: column;
 }
@@ -235,19 +224,17 @@
 .eco-card-title,
 .eco-card p {
   color: black;
+  justify-content: center;
 }
 
-@media (max-width: 768px) {
-  .eco-card {
-    max-width: 100%; 
-  }
+.chart{
+  width: 100%;
+  max-width: 300px;
 }
-
 #locationChart {
   width: 50%;
-  height: 50%;
-  display: block;
-  margin: 0 auto;
+  height: 30%;
+  display: flex;
 }
 
 .titles{
@@ -255,4 +242,60 @@
   color: #198754;
 }
 
+.graph{
+  background-color: white;
+  width: 100%;
+  padding: 2rem;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  border-radius: 1.5rem;
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+}
 
+.quiz {
+  background-color: white;
+  width: 100%;
+  padding: 2rem;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  border-radius: 1.5rem;
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+}
+
+.quiz h2 {
+  font-weight: 600;
+  color: #198754;
+}
+
+.question {
+  opacity: 0;
+  transform: translateY(20px);
+  animation: Up 0.6s forwards;
+}
+
+@keyframes Up {
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+.question h4{
+  font-weight: 600;
+  color: #198754;
+}
+.question form {
+  display: flex;
+  justify-content: center;
+  align-items: center; 
+  gap: 1rem;
+}
+
+.next-button{
+  background-color: #1b5e20;
+  color: white;
+  border: none;
+  width:40%;
+}

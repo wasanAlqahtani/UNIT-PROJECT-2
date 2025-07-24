@@ -1,0 +1,27 @@
+{% extends 'main/base.html' %}
+
+{% block title %}
+Quiz Page
+{% endblock %}
+
+{% block content %}
+<div class="quiz"> 
+    <h2>EcoFreindly Quiz</h2>
+    <h2>Question {{ question_num|add:1 }} of 5</h2>
+    <br>
+    <div class="question">
+    <h4>{{ question }}</h4>
+  <form method="post">
+    {% csrf_token %}
+    <select name="answer" required>
+      <option value="" disabled selected>Select your answer</option>
+      <option value="1">Never</option>
+      <option value="5">Sometimes</option>
+      <option value="10">Always</option>
+    </select>
+    <br><br>
+    <button type="submit" class="next-button">Next</button>
+  </form>
+  </div>
+</div>
+{% endblock %}

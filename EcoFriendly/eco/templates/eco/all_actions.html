@@ -10,8 +10,12 @@ All Actions Page
 {% endblock %}
 
 {% block content %}
+<div class="graph"> 
 <h2 class="titles">Actions by Location (Pie Chart)</h2>
-<canvas id="locationChart"></canvas>
+<div class="chart">
+   <canvas id="locationChart"></canvas>
+</div>
+
 
 <script>
   // Assign JSON data safely to JS variables
@@ -35,32 +39,52 @@ const data = JSON.parse('{{ counts|escapejs }}');
   'rgba(46, 139, 87, 0.7)'    // sea green
 ],
               borderColor: 'rgba(255, 255, 255, 1)',
-              borderWidth: 1
           }]
       }
   });
 </script>
 
+</div>
+<div class="title d-flex justify-content-between align-items-center mb-4">
+  <h3 class="title mb-0">All Actions</h3>
+  
+  <form method="get" action="{% url 'eco:all_action_view' %}" class="d-flex align-items-end">
+    <div class="me-3">
+      <label for="category" class="form-label mb-1">Location</label>
+      <select class="form-select form-select-sm" id="category" name="location">
+        <option value="all">All locations</option>
+        {% for value, label in LocationChoices %}
+          <option value="{{ value }}" {% if value == selected_location %}selected{% endif %}>{{ label }}</option>
+        {% endfor %}
+      </select>
+    </div>
+    <div>
+      <button type="submit" class="btn btn-success btn-dark btn-sm">Filter</button>
+    </div>
+  </form>
+</div>
 
-  <div class="title">
-    <h3 class="title">All Actions</h3>
-<br> 
-  <div class="row latest-actions-row">
-    {% for action in actions %}
-      <div class="col-md-4 col-lg-3 mb-4 d-flex">
-        <div class="card eco-card">
-          <img src="{{ action.image.url }}" class="card-img-top" alt="{{ action.title }}" />
-          <div class="card-body">
-            <h6 class="eco-card-title mb-2">{{ action.title }}</h6>
-            <p>
-              {{ action.description|truncatewords:5 }}...
-              <a href="{% url 'eco:detail_view' action.id %}" class="text-decoration-none text-success">Read more</a>
-            </p>
-            <p><strong>📍 {{ action.location }}</strong></p>
-          </div>
+<div class="row latest-actions-row">
+  {% if actions %}
+  {% for action in actions %}
+    <div class="col-md-4 col-lg-3 mb-4 d-flex">
+      <div class="card eco-card">
+        <img src="{{ action.image.url }}" class="card-img-top" alt="{{ action.title }}" />
+        <div class="card-body">
+          <h6 class="eco-card-title mb-2">{{ action.title }}</h6>
+          <p>
+            {{ action.description|truncatewords:5 }}...
+            <a href="{% url 'eco:detail_view' action.id %}" class="text-decoration-none text-success">Read more</a>
+          </p>
+          <p><strong>📍 {{ action.location }}</strong></p>
         </div>
       </div>
-    {% endfor %}
-  </div>
+    </div>
+  {% endfor %}
+  {% else %}
+    <p>There is no action yet.</p>
+     {% endif %}
+
 </div>
+
 {% endblock %}

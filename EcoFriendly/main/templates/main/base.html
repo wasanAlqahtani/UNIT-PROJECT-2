@@ -20,50 +20,46 @@
 <!-- Body Section -->
 <body>
 <div class="page">
-  <!-- Navbar -->
-  <nav class="navbar navbar-expand-lg fixed-top bg-white border-bottom shadow-sm custom-navbar">
-  <div class="container justify-content-between align-items-center">
+  <nav class="navbar navbar-expand-lg custom-navbar">
+  <div class="container-fluid d-flex align-items-center justify-content-between">
 
-    <!-- Left Logo -->
-    <a class="Logo" href="#"> <strong>EcoFriendly</strong></a>
+    <a class="navbar-brand logo-text" href="#">EcoFriendly</a>
 
-    <!-- Centered Nav Items -->
-    <div class="d-none d-lg-flex mx-auto">
-      <ul class="navbar-nav flex-row gap-4">
-        <li class="nav-item">
-          <a class="nav-link {% if request.resolver_match.url_name == 'home_view' %}active{% endif %}" href="{% url 'main:home_view' %}">Home</a>
-        </li>
-        <li class="nav-item">
-          <a class="nav-link {% if request.resolver_match.url_name == 'all_action_view' %}active{% endif %}" href="{% url 'eco:all_action_view' %}">All Actions</a>
-        </li>
-                <li class="nav-item">
-          <a class="nav-link {% if request.resolver_match.url_name == 'new_action_view' %}active{% endif %}" href="{% url 'eco:new_action_view' %}">Add Action</a>
-        </li>
-                <li class="nav-item">
-          <a class="nav-link {% if request.resolver_match.url_name == 'contact_view' %}active{% endif %}" href="{% url 'main:contact_view' %}">Contact Us</a>
-        </li>
+    <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarMain"
+      aria-controls="navbarMain" aria-expanded="false" aria-label="Toggle navigation">
+      <span class="navbar-toggler-icon"></span>
+    </button>
+
+    <div class="collapse navbar-collapse justify-content-center" id="navbarMain">
+      <ul class="navbar-nav mb-2 mb-lg-0 text-center">
+        <li class="nav-item"><a class="nav-link nav-text {% if request.resolver_match.url_name == 'home_view' %}active{% endif %}" href="{% url 'main:home_view' %}">Home</a></li>
+        <li class="nav-item"><a class="nav-link nav-text {% if request.resolver_match.url_name == 'all_action_view' %}active{% endif %}" href="{% url 'eco:all_action_view' %}">All Actions</a></li>
+        <li class="nav-item"><a class="nav-link nav-text {% if request.resolver_match.url_name == 'new_action_view' %}active{% endif %}" href="{% url 'eco:new_action_view' %}">Add Action</a></li>
+        <li class="nav-item"><a class="nav-link nav-text {% if request.resolver_match.url_name == 'contact_view' %}active{% endif %}" href="{% url 'main:contact_view' %}">Contact Us</a></li>
       </ul>
     </div>
 
-    <!-- Right Side: Challenge Button + Toggle -->
-    <div class="d-flex align-items-center gap-2">
-      <a href="#" class="challenge-button">Take Challenge</a>
-      <button class="navbar-toggler" type="button" data-bs-toggle="offcanvas" data-bs-target="#offcanvasNavbar" aria-controls="offcanvasNavbar">
-        <span class="navbar-toggler-icon"></span>
-      </button>
-    </div>
-    <div class="dropdown" id="themeDropdown" data-bs-theme="light">
-    <button class="btn btn-secondary dropdown-toggle d-flex align-items-center px-3 py-2" type="button" id="dropdownMenuButtonLight" data-bs-toggle="dropdown" aria-expanded="false">
+    <div class="d-flex align-items-center gap-3">
+      <a href="{% url 'quiz:quiz_view' %}">
+        <button class="btn challenge-btn">Take challenge</button>
+      </a>
+      <a href="#" data-mode="landscape" class="mode-icon">
+        <span class="material-symbols-outlined">landscape</span>
+      </a>
+      <a href="#" data-mode="tsunami" class="mode-icon">
+        <span class="material-symbols-outlined">tsunami</span>
+      </a>
+      <a href="#" data-mode="forest" class="mode-icon">
         <span class="material-symbols-outlined">forest</span>
-    </button>
-    <ul class="dropdown-menu" aria-labelledby="dropdownMenuButtonLight">
-        <li><a class="dropdown-item" href="#" data-mode="landscape"><span class="material-symbols-outlined">landscape</span></a></li>
-        <li><a class="dropdown-item" href="#" data-mode="tsunami"><span class="material-symbols-outlined">tsunami</span></a></li>
-        <li><a class="dropdown-item active" href="#" data-mode="forest"><span class="material-symbols-outlined">forest</span></a></li>
-    </ul>
+      </a>
     </div>
+
   </div>
 </nav>
+
+
+  
+
 <div class="home-content"> 
 
             {% block content %}
