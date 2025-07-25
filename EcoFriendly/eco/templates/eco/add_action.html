@@ -9,22 +9,56 @@ Add Action Page
   <h1 class="fw-bold text-center mb-4">Add Action</h1>
   <form class="d-flex flex-column gap-3" action="{% url 'eco:new_action_view' %}" method="POST" enctype="multipart/form-data">
     {% csrf_token %}
-    <input type="text" placeholder="Title" name="title" class="form-control" required/>
-    <textarea placeholder="Description" name="description" class="form-control" required></textarea>
-    <input type="file" name="image" class="form-control" required/>
+    
+    <!-- Title input -->
+    <input 
+      type="text" 
+      name="title" 
+      class="form-control" 
+      placeholder="Title" 
+      value="{{ action_form.title.value|default_if_none:'' }}" 
+      required
+    />
+    {{ action_form.title.errors }}
 
-  <div class="d-flex gap-2 align-items-center"> 
-  <h5 class="m-0 p-0">Location:</h5>
-  <div class="Location"> 
-    {% for val, label in LocationChoices %}
-      <input type="radio" id="{{val}}" name="location" value="{{val}}" required>
-      <label for="{{val}}">{{label}}</label>
-    {% endfor %}
-  </div>
-</div>
+    <!-- Description textarea -->
+    <textarea 
+      name="description" 
+      class="form-control" 
+      placeholder="Description" 
+      required
+    >{{ action_form.description.value|default_if_none:'' }}</textarea>
+    {{ action_form.description.errors }}
+
+    <!-- Image input -->
+    <input 
+      type="file" 
+      name="image" 
+      class="form-control" 
+      required
+    />
+    {{ action_form.image.errors }}
+
+    <!-- Location radios -->
+    <div class="d-flex gap-2 align-items-center"> 
+      <h5 class="m-0 p-0">Location:</h5>
+      <div class="Location"> 
+        {% for val, label in LocationChoices %}
+          <input 
+            type="radio" 
+            id="{{ val }}" 
+            name="location" 
+            value="{{ val }}" 
+            {% if val == action_form.location.value %}checked{% endif %} 
+            required
+          >
+          <label for="{{ val }}">{{ label }}</label>
+        {% endfor %}
+      </div>
+      {{ action_form.location.errors }}
+    </div>
 
     <button type="submit" class="btn btn-primary add-btn">Add</button>
   </form>
 </div>
-
-    {% endblock %}
+{% endblock %}

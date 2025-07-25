@@ -66,7 +66,14 @@
 
             {% endblock %}
             </div>
-              </div>
+  </div>
+
+<footer class="bg-light py-3">
+  <nav class="container d-flex justify-content-between">
+    <a href="{% url 'main:home_view' %}" class="text-decoration-none text-dark">EcoFriendly</a>
+    <a href="{% url 'quiz:all_question_view' %}" class="text-decoration-none text-dark">Question Managment</a>
+  </nav>
+</footer>
 
 </body>
 

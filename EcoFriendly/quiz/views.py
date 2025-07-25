@@ -1,43 +1,41 @@
 from django.shortcuts import render,redirect
 from django.http import HttpRequest, HttpResponse
+from .models import Question
+from .forms import QuestionForm
 
 # Create your views here.
-def quiz_view(request:HttpRequest):
-     if 'question_num' not in request.session:
-        request.session['question_num'] = 0
-        request.session['answers'] = []
+def all_question_view(request:HttpRequest):
+    questions = Question.objects.all()
+    return render(request, 'quiz/all_questions.html', {"questions":questions})
 
-     question_num = request.session['question_num']
-     questions = [
-        "Do you save water at home?",
-        "Do you use reusable bags?",
-        "Do you avoid plastic products?",
-        "Do you recycle regularly?",
-        "Do you use public transportation?"
-    ]
+def add_question_view(request):
+    form = QuestionForm()
+    if request.method == 'POST':
+        form = QuestionForm(request.POST)
+        if form.is_valid():
+            form.save()
+            return redirect('quiz:add_question_view') 
+        
+    return render(request, 'quiz/add_question.html', {'form': form ,"AnswerChoices": Question.AnswerChoices.choices})
 
-     if request.method == 'POST':
-        answer = request.POST.get('answer')
-        answers = request.session['answers']
-        answers.append(int(answer))
-        request.session['answers'] = answers
+def delete_view(request:HttpRequest,question_id:int):
+     question= Question.objects.get(pk=question_id)
+     question.delete()
+     return redirect('main:home_view')
 
-        question_num += 1
-        request.session['question_num'] = question_num
+def update_view(request:HttpRequest,question_id:int):
+        question = Question.objects.get(pk=question_id)
+        if request.method == "POST":
+            question.question= request.POST["question"]
+            question.save()
+            return redirect("quiz:all_question_view")
 
-        if question_num >= len(questions):
-            score = sum(answers)
-            del request.session['question_num']
-            del request.session['answers']
+        return render(request, "quiz/update_question.html", {"question":question, "AnswerChoices": Question.AnswerChoices.choices})
 
 
-            if score >=40 :
-                result_type = ' 🥇 Eco Warrior'
-            elif score >= 25 :
-                result_type = ' 🍀 Eco Starter'  
-            else :
-                result_type = ' 🔴 Needs Improvement'
-            return render(request, 'quiz/result.html', {'score': score, 'result_type': result_type})
 
-     return render(request, 'quiz/quiz.html', {'question': questions[question_num], 'question_num': question_num})
+def quiz_view(request):
+    questions = Question.objects.all()
+    return render(request, 'quiz/quiz.html', {'questions': questions})
+
 

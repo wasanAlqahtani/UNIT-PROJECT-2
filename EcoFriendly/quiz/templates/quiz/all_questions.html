@@ -1,0 +1,60 @@
+{% extends 'main/base.html' %}
+
+{% block title %}
+All Questions Page
+{% endblock %}
+
+{% block content %}
+<div class="d-flex justify-content-between align-items-center mb-3 flex-wrap gap-2">
+  <div>
+    <h3 class="mb-0">All Questions</h3>
+    <h5 class="text-muted">Total Questions: {{ questions.count }}</h5>
+  </div>
+  <a href="{% url 'quiz:add_question_view' %}" class="btn btn-primary btn-dark">Add Question</a>
+</div>
+<div class="row g-4">
+  {% if questions %}
+    {% for question in questions %}
+      <div class="col-md-4 col-lg-3 d-flex">
+        <div class="card eco-card w-100 shadow-sm">
+          <div class="card-body d-flex flex-column">
+            <h6 class="card-title mb-3">{{ question.question }}</h6>
+            <div class="mt-auto d-flex justify-content-end gap-2">
+              <a href="{% url 'quiz:update_view' question.id %}" class="btn btn-primary btn-sm">Update</a>
+              <!-- Delete button triggers modal -->
+              <button type="button" 
+                      class="btn btn-danger btn-sm" 
+                      data-bs-toggle="modal" 
+                      data-bs-target="#deleteModal{{ question.id }}">
+                Delete
+              </button>
+            </div>
+          </div>
+        </div>
+
+        <!-- Modal -->
+        <div class="modal fade" id="deleteModal{{ question.id }}" tabindex="-1" aria-labelledby="deleteModalLabel{{ question.id }}" aria-hidden="true">
+          <div class="modal-dialog">
+            <div class="modal-content">
+              <div class="modal-header">
+                <h5 class="modal-title" id="deleteModalLabel{{ question.id }}">Delete Question</h5>
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+              </div>
+              <div class="modal-body">
+                Are you sure you want to delete:<br><strong>{{ question.question }}</strong>?
+              </div>
+              <div class="modal-footer">
+                <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cancel</button>
+                <a href="{% url 'quiz:delete_view' question.id %}" class="btn btn-danger">Delete</a>
+              </div>
+            </div>
+          </div>
+        </div>
+
+      </div>
+    {% endfor %}
+  {% else %}
+    <p>No questions available yet.</p>
+  {% endif %}
+</div>
+{% endblock %}

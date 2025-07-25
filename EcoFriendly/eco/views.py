@@ -8,17 +8,19 @@ from django.db.models import Q
 
 # Create your views here.
 
-def new_action_view(request:HttpRequest):
-     action_form = ActionForm()
-     if request.method == "POST":
+def new_action_view(request):
+    if request.method == 'POST':
         action_form = ActionForm(request.POST, request.FILES)
         if action_form.is_valid():
             action_form.save()
             return redirect('main:home_view')
-        else:
-            print("not valid form")
-            print(action_form.errors)
-     return render(request, "eco/add_action.html",{"action_form":action_form , "LocationChoices": Action.LocationChoices.choices})
+    else:
+        action_form = ActionForm()
+
+    return render(request, "eco/add_action.html", {
+        "action_form": action_form,
+        "LocationChoices": Action.LocationChoices.choices
+    })
 
 def all_action_view(request):
     location = request.GET.get('location')
@@ -60,7 +62,7 @@ def add_comment_view(request:HttpRequest, action_id):
 def update_view(request:HttpRequest, action_id:int):
     action = Action.objects.get(pk=action_id)
     if request.method == "POST":
-        action.title= request.POST["name"]
+        action.title= request.POST["title"]
         action.description = request.POST["description"]
         action.location = request.POST["location"]
         if "image" in request.FILES: action.image = request.FILES["image"]

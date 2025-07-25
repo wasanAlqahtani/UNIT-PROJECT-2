@@ -63,7 +63,7 @@
   margin-top: 10%;
   border-radius: 1.5rem;
   margin: 2rem auto;
-  flex-grow: 1; /* take remaining vertical space */
+  flex-grow: 1; 
   overflow-y: auto;
   display: flex;
   flex-direction: column;

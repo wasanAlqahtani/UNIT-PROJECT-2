@@ -7,9 +7,9 @@ Update Action Page
 {% block content %}
 <div class="col-lg-8 add-page mx-auto">
   <h1 class="fw-bold text-center mb-4">Update {{action.title}}</h1>
-  <form class="d-flex flex-column gap-3" action="{% url 'eco:new_action_view' %}" method="POST" enctype="multipart/form-data">
+  <form class="d-flex flex-column gap-3" action="{% url 'eco:update_view' action.id%}" method="POST" enctype="multipart/form-data">
     {% csrf_token %}
-    <input type="text" placeholder="{{action.title}}" name="title" class="form-control" required/>
+    <input type="text" placeholder="{{action.title}}" name="title" class="form-control" value="{{action.title}}"required/>
     <textarea placeholder="Description" name="description" class="form-control" required>{{action.description}}</textarea>
       <div class="row"> 
         <div class="col-3"> 

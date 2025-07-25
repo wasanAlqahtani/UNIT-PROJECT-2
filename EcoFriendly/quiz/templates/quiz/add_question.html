@@ -1,0 +1,92 @@
+{% extends 'main/base.html' %}
+
+{% block title %}Add Question{% endblock %}
+{% block content %}
+<div class="col-lg-8 mx-auto add-page">
+  <h1 class="fw-bold text-center mb-4">Add Quiz Question</h1>
+  <form class="d-flex flex-column gap-3" action="{% url 'quiz:add_question_view' %}" method="POST">
+    {% csrf_token %}
+
+    <!-- Question Text -->
+    <textarea 
+      name="question" 
+      class="form-control" 
+      placeholder="Enter the question" 
+      required
+    >{{ form.question.value|default_if_none:'' }}</textarea>
+    {{ form.question.errors }}
+
+
+     <label for="choice_a">Choice A</label>
+    <input 
+      type="text" 
+      name="choice_a" 
+      class="form-control" 
+      placeholder="Choice A" 
+      value="{{ form.choice_a.value }}" 
+      required
+    />
+    {{ form.choice_a.errors }}
+    <label for="choice_b">Choice B</label>
+    <input 
+      type="text" 
+      name="choice_b" 
+      class="form-control" 
+      placeholder="Choice B" 
+      value="{{ form.choice_b.value }}" 
+      required
+    />
+    {{ form.choice_b.errors }}
+    <label for="choice_c">Choice C</label>
+    <input 
+      type="text" 
+      name="choice_c" 
+      class="form-control" 
+      placeholder="Choice C" 
+      value="{{ form.choice_c.value }}" 
+      required
+    />
+    {{ form.choice_c.errors }}
+    <label for="choice_d">Choice D</label>
+    <input 
+      type="text" 
+      name="choice_d" 
+      class="form-control" 
+      placeholder="Choice D" 
+      value="{{ form.choice_d.value }}" 
+      required
+    />
+    {{ form.choice_d.errors }}
+
+
+    <div class="d-flex gap-2 align-items-center"> 
+      <h5 class="m-0 p-0">Correct Answer:</h5>
+      <div class="Answer"> 
+        {% for val, label in AnswerChoices %}
+          <input 
+            type="radio" 
+            id="{{ val }}" 
+            name="correct_choice" 
+            value="{{ val }}" 
+            {% if val == form.correct_choice.value %}checked{% endif %} 
+            required
+          >
+          <label for="{{ val }}">{{ label }}</label>
+        {% endfor %}
+      </div>
+      {{ form.correct_choice.errors }}
+    </div>
+
+    <textarea 
+      name="explanation" 
+      class="form-control" 
+      placeholder="Explanation (optional)"
+    >{{ form.explanation.value|default_if_none:'' }}</textarea>
+    {{ form.explanation.errors }}
+
+    <button type="submit" class="btn btn-primary add-btn">Add Question</button>
+  </form>
+</div>
+{% endblock %}
+
+

@@ -26,19 +26,20 @@ def home_view(request: HttpRequest):
         "RatingChoices": Comment.RatingChoices.choices  # pass labels to the template
     })
 
-def contact_view(request:HttpRequest):
+from django.contrib import messages
+
+def contact_view(request: HttpRequest):
     if request.method == "POST":
-        message = Contact(first_name=request.POST["first_name"], last_name=request.POST["last_name"], 
-                            email=request.POST["email"], 
-                            message = request.POST["message"])
-                
+        message = Contact(
+            first_name=request.POST["first_name"],
+            last_name=request.POST["last_name"],
+            email=request.POST["email"],
+            message=request.POST["message"]
+        )
         message.save()
+
+        messages.success(request, "Your message has been sent!")
         return redirect('main:home_view')
 
-    return render(request,"main/contact.html")
-
-def messages_view(request:HttpRequest):
-
-    message = Contact.objects.all()
-    return render(request,"main/messages.html",{"message": message})
+    return render(request, "main/contact.html")
 

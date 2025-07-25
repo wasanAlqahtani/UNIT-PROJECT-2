@@ -1,0 +1,80 @@
+{% extends 'main/base.html' %}
+
+{% block title %}
+Update Quiz Question
+{% endblock %}
+
+{% block content %}
+<div class="col-lg-8 mx-auto add-page">
+  <h1 class="fw-bold text-center mb-4">Update Quiz Question</h1>
+  <form class="d-flex flex-column gap-3" action="{% url 'quiz:update_view' question.id %}" method="POST">
+    {% csrf_token %}
+
+    <!-- Question Text -->
+    <textarea 
+      name="question" 
+      class="form-control" 
+      placeholder="Enter the question" 
+      required
+    >{{ question.question }}</textarea>
+
+    <label for="choice_a">Choice A</label>
+    <input 
+      type="text" 
+      name="choice_a" 
+      class="form-control" 
+      placeholder="Choice A" 
+      value="{{ question.choice_a }}" 
+      required
+    />
+
+    <label for="choice_b">Choice B</label>
+    <input 
+      type="text" 
+      name="choice_b" 
+      class="form-control" 
+      placeholder="Choice B" 
+      value="{{ question.choice_b }}" 
+      required
+    />
+
+    <label for="choice_c">Choice C</label>
+    <input 
+      type="text" 
+      name="choice_c" 
+      class="form-control" 
+      placeholder="Choice C" 
+      value="{{ question.choice_c }}" 
+      required
+    />
+
+    <label for="choice_d">Choice D</label>
+    <input 
+      type="text" 
+      name="choice_d" 
+      class="form-control" 
+      placeholder="Choice D" 
+      value="{{ question.choice_d }}" 
+      required
+    />
+
+<h5 class="m-0 p-0">Answer:</h5>
+<div class="location"> 
+  {% for val, label in AnswerChoices %}
+    <input type="radio" id="{{ val }}" name="correct_choice" value="{{ val }}"
+      {% if question.correct_choice == val %} checked {% endif %}>
+    <label for="{{ val }}">{{ label }}</label>
+  {% endfor %}
+</div>
+
+    <textarea 
+      name="explanation" 
+      class="form-control" 
+      placeholder="Explanation (optional)"
+    >{{ question.explanation }}</textarea>
+
+    <button type="submit" class="btn btn-success add-btn">Update Question</button>
+  </form>
+</div>
+{% endblock %}
+
