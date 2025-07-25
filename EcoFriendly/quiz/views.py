@@ -1,3 +1,4 @@
+import json
 from django.shortcuts import render,redirect
 from django.http import HttpRequest, HttpResponse
 from .models import Question
@@ -21,7 +22,7 @@ def add_question_view(request):
 def delete_view(request:HttpRequest,question_id:int):
      question= Question.objects.get(pk=question_id)
      question.delete()
-     return redirect('main:home_view')
+     return redirect('quiz:all_question_view')
 
 def update_view(request:HttpRequest,question_id:int):
         question = Question.objects.get(pk=question_id)
@@ -32,10 +33,29 @@ def update_view(request:HttpRequest,question_id:int):
 
         return render(request, "quiz/update_question.html", {"question":question, "AnswerChoices": Question.AnswerChoices.choices})
 
-
-
-def quiz_view(request):
+def quiz_view(request: HttpRequest):
     questions = Question.objects.all()
-    return render(request, 'quiz/quiz.html', {'questions': questions})
+    questions_data = [
+        {
+            'id': q.id,
+            'question': q.question,
+            'choices': {
+                'a': q.choice_a,
+                'b': q.choice_b,
+                'c': q.choice_c,
+                'd': q.choice_d,
+            },
+            'correct': q.correct_choice.lower(),  # Renamed to 'correct' to match HTML/JS
+            'explanation': q.explanation or "",
+        }
+        for q in questions
+    ]
+
+    return render(request, 'quiz/quiz.html', {
+        'questions_json': json.dumps(questions_data),
+    })
+
+
+
 
 

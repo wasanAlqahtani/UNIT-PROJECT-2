@@ -23,7 +23,7 @@ def home_view(request: HttpRequest):
     return render(request, 'main/home.html', {
         "tips": remainder_tips,
         "actions": actions,
-        "RatingChoices": Comment.RatingChoices.choices  # pass labels to the template
+        "RatingChoices": Comment.RatingChoices.choices 
     })
 
 from django.contrib import messages
@@ -37,9 +37,13 @@ def contact_view(request: HttpRequest):
             message=request.POST["message"]
         )
         message.save()
-
-        messages.success(request, "Your message has been sent!")
-        return redirect('main:home_view')
+        messages.success(request, "Your message was sent successfully.")
+        return redirect('main:contact_view')
 
     return render(request, "main/contact.html")
+
+
+def messages_view(request:HttpRequest):
+    messages = Contact.objects.all()
+    return render(request,"main/messages.html",{"messages": messages})
 

@@ -46,11 +46,11 @@ const data = JSON.parse('{{ counts|escapejs }}');
 
 </div>
 <div class="title d-flex justify-content-between align-items-center mb-4">
-  <h3 class="title mb-0">All Actions</h3>
+  <h3 class="title mb-0 label-all">All Actions</h3>
   
   <form method="get" action="{% url 'eco:all_action_view' %}" class="d-flex align-items-end">
     <div class="me-3">
-      <label for="category" class="form-label mb-1">Location</label>
+      <label for="category" class="form-label mb-1 label-all">Location</label>
       <select class="form-select form-select-sm" id="category" name="location">
         <option value="all">All locations</option>
         {% for value, label in LocationChoices %}
@@ -59,7 +59,7 @@ const data = JSON.parse('{{ counts|escapejs }}');
       </select>
     </div>
     <div>
-      <button type="submit" class="btn btn-success btn-dark btn-sm">Filter</button>
+      <button type="submit" class="btn btn-success btn-dark btn-sm filter">Filter</button>
     </div>
   </form>
 </div>

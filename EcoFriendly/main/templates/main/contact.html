@@ -33,6 +33,15 @@ Contact Page
         </div>
         <button type="submit" class="btn w-100 submit-btn">Submit</button>
       </form>
+      
+      <br>
+      {% if messages %}
+        {% for message in messages %}
+          <div class="alert alert-success">
+            {{ message }}
+          </div>
+        {% endfor %}
+      {% endif %}
     </div>
 
 

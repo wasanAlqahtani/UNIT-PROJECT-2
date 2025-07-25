@@ -16,21 +16,26 @@
   padding: 0.5rem 1rem;
   box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
 }
-
-
+#navbarMain{
+   margin-left: 10% ;
+}
 .logo-text {
   color: #145235 !important;
   font-weight: bold;
 }
 .nav-text{
+  color:#145235 !important;
   font-weight: bold !important;
+  text-decoration: none !important;
 }
 .nav-text:hover {
-  color: black;
+  color: black !important;
+  text-decoration: none !important;
 }
 .nav-text.active{
   color:#145235 !important;
-  text-decoration: underline #145235;
+  text-decoration: underline !important;
+  text-decoration-color: #145235 !important;
 }
 
 
@@ -236,10 +241,21 @@
   height: 30%;
   display: flex;
 }
-
+.label-all{
+   color: #198754;
+}
+.message{
+  color: #198754;
+}
+.all-q{
+  color: #198754;
+}
 .titles{
   font-weight: 600;
   color: #198754;
+}
+.btn.filter{
+  background-color: #198754 ;
 }
 
 .graph{
@@ -293,9 +309,112 @@
   gap: 1rem;
 }
 
-.next-button{
-  background-color: #1b5e20;
+.btn-primary.update{
+    background-color: #198754  ;
+}
+
+.btn-primary.add{
+    background-color: #198754  ;
+}
+
+.quiz-welcome, .quiz-container, .quiz-result {
+  max-width: 600px;
+  margin: 40px auto;
+  padding: 2rem;
+  text-align: center;
+  font-family: Arial, sans-serif;
+}
+
+
+#question {
+  color: #198754; 
+  font-weight: bold;
+  white-space: pre-line; 
+  margin-bottom: 1.5rem;
+}
+
+
+.quiz-header ul {
+  list-style: none;
+  padding: 0;
+  text-align: left;
+}
+
+.quiz-header li {
+  margin: 10px 0;
+  font-size: 1.1rem;
+}
+
+
+.quiz-header input[type="radio"] {
+  margin-right: 10px;
+  cursor: pointer;
+}
+
+
+.quiz-header label {
+  cursor: pointer;
+}
+
+.quiz-btn {
+  background-color: #198754;
   color: white;
   border: none;
-  width:40%;
+  padding: 12px 28px;
+  border-radius: 6px;
+  font-weight: bold;
+  font-size: 1.1rem;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+  margin-top: 1rem;
+  user-select: none;
 }
+
+.quiz-btn:hover {
+  background-color: #157347;
+}
+
+
+#final-score {
+  color: #198754;
+  font-weight: bold;
+  font-size: 1.4rem;
+  margin-bottom: 1rem;
+}
+
+#explanation {
+  font-style: italic;
+  margin-top: 15px;
+  font-size: 1rem;
+  line-height: 1.4;
+}
+
+
+#explanation.correct {
+  color: #198754; 
+  font-weight: bold;
+}
+
+
+#explanation.wrong {
+  color: #dc3545; 
+  font-weight: bold;
+}
+
+
+#correct-answer {
+  color: #198754;
+  font-weight: bold;
+  margin-top: 8px;
+  display: block;
+}
+
+
+.quiz-motivation {
+  margin-top: 20px;
+  font-weight: bold;
+  color: #145235;
+  font-size: 1.1rem;
+}
+
+
