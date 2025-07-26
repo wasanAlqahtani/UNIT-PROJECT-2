@@ -21,10 +21,10 @@ class Action(models.Model):
 class Comment(models.Model):
 
     class RatingChoices(models.IntegerChoices):
-        STAR1 = 1, "👍🏻 Try Harder"
-        STAR2 = 2, "🎉 Keep Going " 
-        STAR3 = 3, "🤩 Nice Job"
-        STAR4 = 4, "🥇 Excellent"
+        RATE1 = 1, "👍🏻 Try Harder"
+        RATE2 = 2, "🎉 Keep Going " 
+        RATE3 = 3, "🤩 Nice Job"
+        RATE14 = 4, "🥇 Excellent"
 
     action = models.ForeignKey(Action, on_delete= models.CASCADE)
     content = models.TextField()

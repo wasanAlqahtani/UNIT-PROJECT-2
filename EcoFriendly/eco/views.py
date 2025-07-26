@@ -5,6 +5,9 @@ from .forms import ActionForm
 from django.db.models import Count
 import json
 from django.db.models import Q
+from django.core.paginator import Paginator
+from django.db.models import Avg
+
 
 # Create your views here.
 
@@ -24,18 +27,24 @@ def new_action_view(request):
 
 def all_action_view(request):
     location = request.GET.get('location')
-    actions = Action.objects.all()
+    actions = Action.objects.all().annotate(avg_rating=Avg('comment__rating'))
     if location and location != 'all':
         actions = actions.filter(location=location)
+
+    paginator = Paginator(actions, 3)
+    page_number = request.GET.get('page')
+    page_obj = paginator.get_page(page_number)
+
     data = Action.objects.values('location').annotate(count=Count('location'))
     labels = [entry['location'] for entry in data]
     counts = [entry['count'] for entry in data]
 
     context = {
-        'actions': actions,
+        'page_obj': page_obj,
         'labels': json.dumps(labels),
         'counts': json.dumps(counts),
         'LocationChoices': Action.LocationChoices.choices,
+        'selected_location': location or 'all',
     }
     return render(request, 'eco/all_actions.html', context)
 

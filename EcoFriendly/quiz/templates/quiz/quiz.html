@@ -2,6 +2,7 @@
 {% block title %}Take Challenge{% endblock %}
 
 {% block content %}
+<div class="graph"> 
 <div id="welcome-screen" class="quiz-welcome">
   <h2>🌱 Welcome to the Eco Quiz!</h2>
   <p>Test your knowledge and help build a greener planet!</p>
@@ -33,7 +34,7 @@
   <p class="quiz-motivation">Our future depends on our actions today; choose sustainability. 🌍</p>
   <button onclick="location.reload()" class="quiz-btn">Play Again</button>
 </div>
-
+</div>
 
 <script>
   const quizData = JSON.parse('{{ questions_json|escapejs }}');

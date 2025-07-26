@@ -5,7 +5,7 @@ from eco.models import Action, Comment
 from main.models import Contact
 # Create your views here.
 def home_view(request: HttpRequest):
-    actions = Action.objects.annotate(avg_rating=Avg('comment__rating')).order_by('-created_at')[:4]
+    actions = Action.objects.annotate(avg_rating=Avg('comment__rating')).order_by('-created_at')[:3]
 
     remainder_tips = [
         "Reduce Single-Use Plastics",
