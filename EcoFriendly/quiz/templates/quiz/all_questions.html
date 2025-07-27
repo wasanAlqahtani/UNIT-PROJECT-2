@@ -3,15 +3,27 @@
 {% block title %}
 All Questions Page
 {% endblock %}
-
+<!--All question Page -->
 {% block content %}
+<!-- Display message when the question is updated -->
+       {% if messages %}
+        {% for message in messages %}
+          <div class="alert alert-success">
+            {{ message }}
+          </div>
+        {% endfor %}
+      {% endif %}
+      
 <div class="d-flex justify-content-between align-items-center mb-3 flex-wrap gap-2">
   <div>
+    <!-- All text  question and total num of question -->
     <h3 class="mb-0 all-q">All Questions</h3>
     <h5 class="text-muted">Total Questions: {{ questions.count }}</h5>
   </div>
+  <!-- Button to add question (redirect to add question page )-->
   <a href="{% url 'quiz:add_question_view' %}" class="btn btn-primary btn-dark add">Add Question</a>
 </div>
+<!-- Div to display all questions -->
 <div class="row g-4">
   {% if questions %}
     {% for question in questions %}
@@ -20,8 +32,9 @@ All Questions Page
           <div class="card-body d-flex flex-column">
             <h6 class="card-title mb-3">{{ question.question }}</h6>
             <div class="mt-auto d-flex justify-content-end gap-2">
+              <!--Update button -->
               <a href="{% url 'quiz:update_view' question.id %}" class="btn btn-primary btn-sm update">Update</a>
-              <!-- Delete button triggers modal -->
+              <!--Delete button -->
               <button type="button" 
                       class="btn btn-danger btn-sm" 
                       data-bs-toggle="modal" 
@@ -32,7 +45,7 @@ All Questions Page
           </div>
         </div>
 
-        <!-- Modal -->
+       <!--Popup window to check if the user sure to delete this question -->
         <div class="modal fade" id="deleteModal{{ question.id }}" tabindex="-1" aria-labelledby="deleteModalLabel{{ question.id }}" aria-hidden="true">
           <div class="modal-dialog">
             <div class="modal-content">

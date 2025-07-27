@@ -3,10 +3,11 @@
 {% block title %}
 Add Action Page
 {% endblock %}
-
+<!-- Add Action Page -->
 {% block content %}
 <div class="col-lg-8 mx-auto add-page">
   <h1 class="fw-bold text-center mb-4">Add Action</h1>
+  <!--Form for adding the action -->
   <form class="d-flex flex-column gap-3" action="{% url 'eco:new_action_view' %}" method="POST" enctype="multipart/form-data">
     {% csrf_token %}
     
@@ -21,7 +22,7 @@ Add Action Page
     />
     {{ action_form.title.errors }}
 
-    <!-- Description textarea -->
+    <!-- Description input (Text Area ) -->
     <textarea 
       name="description" 
       class="form-control" 
@@ -30,7 +31,7 @@ Add Action Page
     >{{ action_form.description.value|default_if_none:'' }}</textarea>
     {{ action_form.description.errors }}
 
-    <!-- Image input -->
+    <!-- Image input ( upload image )-->
     <input 
       type="file" 
       name="image" 
@@ -39,10 +40,11 @@ Add Action Page
     />
     {{ action_form.image.errors }}
 
-    <!-- Location radios -->
+    <!-- Location radios take from location choices  -->
     <div class="d-flex gap-2 align-items-center"> 
       <h5 class="m-0 p-0">Location:</h5>
       <div class="Location"> 
+        <!-- Loop to print the location choices -->
         {% for val, label in LocationChoices %}
           <input 
             type="radio" 
@@ -57,7 +59,7 @@ Add Action Page
       </div>
       {{ action_form.location.errors }}
     </div>
-
+<!-- Add button -->
     <button type="submit" class="btn btn-primary add-btn">Add</button>
   </form>
 </div>

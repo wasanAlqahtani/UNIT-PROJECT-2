@@ -1,8 +1,10 @@
 from django.db import models
 
 # Create your models here.
-class Action(models.Model):
 
+#action model 
+class Action(models.Model):
+    #location text choices 
     class LocationChoices(models.TextChoices):
 
         Location1 = "School", "School"
@@ -17,9 +19,9 @@ class Action(models.Model):
     location = models.CharField(max_length=1024, choices=LocationChoices.choices,
                                 default=LocationChoices.Location5)
     created_at = models.DateField(auto_now_add=True)
-
+#comment model for each action 
 class Comment(models.Model):
-
+    #rate integer choices (its help when calculate average )
     class RatingChoices(models.IntegerChoices):
         RATE1 = 1, "👍🏻 Try Harder"
         RATE2 = 2, "🎉 Keep Going " 

@@ -1,3 +1,6 @@
+/* base styles */
+
+/* background style */
 .page {
   font-family: "Montserrat", sans-serif;
   background-image: url('/static/images/forest.jpg');
@@ -8,6 +11,7 @@
   flex-direction: column;
 
 }
+/* navbar backgound */
 .custom-navbar {
   background-color: rgba(255, 255, 255, 0.85) !important;
   border-radius: 1.5rem;
@@ -16,29 +20,35 @@
   padding: 0.5rem 1rem;
   box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
 }
+/* Toggle navigation */ 
 #navbarMain{
    margin-left: 10% ;
 }
+
+/* logo design */
 .logo-text {
   color: #145235 !important;
   font-weight: bold;
 }
+/* middle navigation section design */
 .nav-text{
   color:#145235 !important;
   font-weight: bold !important;
   text-decoration: none !important;
 }
+
 .nav-text:hover {
   color: black !important;
   text-decoration: none !important;
 }
+
 .nav-text.active{
   color:#145235 !important;
   text-decoration: underline !important;
   text-decoration-color: #145235 !important;
 }
 
-
+/* challenge button design */
 .challenge-btn {
   background-color: #1b5e20 !important;
   color: white !important;
@@ -49,18 +59,11 @@
 .challenge-btn:hover {
   background-color: #1b5e20 !important;
 }
+/*---------------------------------------------------------------*/
 
-.mode-icon span {
-  color:  #1b5e20  !important;
-  font-size: 24px;
-}
+/* Home Page Style */
 
-
-.mode-icon:hover span {
-  color: black;
-}
-
-
+/* the background of the main div */
 .home-content {
   background-color: rgba(255, 255, 255, 0.85);
   width: 80%;
@@ -76,7 +79,7 @@
 }
 
 
-
+/* the top section style in home page */
 .top-section {
   background-color: white;
   width: 100%;
@@ -101,7 +104,7 @@
 }
 
 .tip-slider {
-  height: 2.5rem; /* height of one tip */
+  height: 2.5rem;
   overflow: hidden;
   width: 100%;
   text-align: center;
@@ -123,7 +126,7 @@
   font-weight: 600;
   opacity: 0.9;
 }
-
+/* the animation of the remainder */
 @keyframes slideUp {
   from {
     transform: translateY(0);
@@ -132,7 +135,7 @@
     transform: translateY(-100%);
   }
 }
-
+/* bottom section design on the home page */
 .bottom-section {
   background-color: (255, 255, 255, 0.85);
   width: 100%;
@@ -153,20 +156,29 @@
 .latest a{
   text-decoration: none;
 }
+
+/* search result page */ 
+.search-result{
+  color: #198754;
+}
+
+/*---------------------------------------------------------------*/
+
+/* Contact  Page style */
 .contact {
   display: flex;
   flex-direction: column;
   align-items: center;
   width: 100%;
 }
-
+/* text style */
 .contact h1 {
   font-weight: 600;
   text-align: center;
   color: #198754;
   margin-bottom: 1.5rem;
 }
-
+/* form style */
 .contact form {
   width: 100%;
   max-width: 600px;
@@ -175,12 +187,17 @@
   border-radius: 1rem;
   box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
 }
-
+/* button style */
 .submit-btn {
   background-color: #198754 !important;
   border: none !important;
   color: white;
 }
+/*---------------------------------------------------------------*/ 
+
+/* Add Action Page  Style */
+
+/* main div */
 .add-page {
   display: flex;
   flex-direction: column;
@@ -188,13 +205,13 @@
   align-items: center;
   width: 100%;
 }
-
+/* text style */
 .add-page h1 {
   font-weight: 600;
   text-align: center;
   color: #198754;
 }
-
+/* form style */
 .add-page form {
   width: 100%;
   max-width: 600px;
@@ -203,16 +220,21 @@
   border-radius: 1rem;
   box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
 }
-
+/* button style */ 
 .add-btn {
   background-color: #198754 !important;
   border: none !important;
 }
+/*---------------------------------------------------------------*/ 
+
+/* All Actions Page  Style */
+/* the div to display the cards */
 .latest-actions-row {
   justify-content: flex-start;
   gap: 1rem; 
 }
 
+/* card (actions) design */
 .eco-card {
   width: 100%;
   max-width: 100%;
@@ -224,14 +246,20 @@
 .eco-card img {
   height: 180px; 
   object-fit: cover;
-}
 
-.eco-card-title,
-.eco-card p {
+}
+.eco-card-title{
+  font-weight:bold;
+  font-size: 1.25rem !important;
   color: black;
   justify-content: center;
 }
 
+.eco-card p {
+  color: black;
+  justify-content: center;
+}
+/* Chart section design */
 .chart{
   width: 100%;
   max-width: 300px;
@@ -241,19 +269,10 @@
   height: 30%;
   display: flex;
 }
+/* text for all action and filter label */
 .label-all{
   color: #198754;
   font-weight: bold;
-}
-.message{
-  color: #198754;
-}
-.all-q{
-  color: #198754;
-}
-.titles{
-  font-weight: 600;
-  color: #198754;
 }
 .btn.filter{
   background-color: #198754 ;
@@ -289,22 +308,45 @@
   border-radius: 1.5rem;
   box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
 }
+.titles{
+  font-weight: 600;
+  color: #198754;
+} 
+/*---------------------------------------------------------------*/ 
 
+/* messages Page  Style */
+
+/*title text style */
+.message{
+  color: #198754;
+}
+
+/*---------------------------------------------------------------*/ 
+
+/*Question Managment Page Style  */
+
+/* design all text that inside all-q class */
+.all-q{
+  color: #198754;
+}
+/* add question form style */
 .question form {
   display: flex;
   justify-content: center;
   align-items: center; 
   gap: 1rem;
 }
-
+/* style update button */
 .btn-primary.update{
     background-color: #198754  ;
 }
-
+/* style add button */
 .btn-primary.add{
     background-color: #198754  ;
 }
+/*---------------------------------------------------------------*/ 
 
+/* Take Challenge Page  Style */
 .quiz-welcome, .quiz-container, .quiz-result {
   max-width: 600px;
   margin: 40px auto;
@@ -312,7 +354,7 @@
   text-align: center;
   font-family: Arial, sans-serif;
 }
-
+/* Welcoming text style before strating the quiz */
 .quiz-welcome h2{
   color: #145235;
   font-weight: bold;
@@ -321,14 +363,14 @@
   color: #198754; 
   font-size: 1.5rem;
 }
+/*question style */
 #question {
   color: #198754; 
   font-weight: bold;
   white-space: pre-line; 
   margin-bottom: 1.5rem;
 }
-
-
+/*question and answers style */
 .quiz-header ul {
   list-style: none;
   padding: 0;
@@ -350,7 +392,7 @@
 .quiz-header label {
   cursor: pointer;
 }
-
+/*quiz button design*/
 .quiz-btn {
   background-color: #198754;
   color: white;
@@ -369,14 +411,14 @@
   background-color: #157347;
 }
 
-
+/*score text style e*/
 #final-score {
   color: #198754;
   font-weight: bold;
   font-size: 1.4rem;
   margin-bottom: 1rem;
 }
-
+/*explanaitaion design */
 #explanation {
   font-style: italic;
   margin-top: 15px;
@@ -384,48 +426,48 @@
   line-height: 1.4;
 }
 
-
+/*correct answer style if the answer is correct  */
 #explanation.correct {
   color: #198754; 
   font-weight: bold;
   font-size: 1.5rem;
 }
 
-
+/*wrong answer style */
 #explanation.wrong {
   color: #dc3545; 
   font-weight: bold;
   font-size: 1.5rem;
 }
 
-
+/*correct answer style  for explanation */
 #correct-answer {
   color: #198754;
   font-weight: bold;
   margin-top: 8px;
   display: block;
 }
-
+/*a choice style */
 #a_text{
   font-weight: bold;
   font-size: 1.25rem;
 }
-
+/*b choice style */
 #b_text{
   font-weight: bold;
   font-size: 1.25rem;
 }
-
+/*c choice style */
 #c_text{
   font-weight: bold;
   font-size: 1.25rem;
 }
-
+/*d choice style */
 #d_text{
   font-weight: bold;
   font-size: 1.25rem;
 }
-
+/* motivation sentence style  */
 .quiz-motivation {
   margin-top: 20px;
   font-weight: bold;
@@ -433,7 +475,7 @@
   font-size: 2rem;
 }
 
-
+/* comment text design */
 .comment{
   color: #198754;
   font-weight: bold;

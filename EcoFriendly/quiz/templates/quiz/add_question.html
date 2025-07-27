@@ -2,8 +2,10 @@
 
 {% block title %}Add Question{% endblock %}
 {% block content %}
+<!-- Add Question Page -->
 <div class="col-lg-8 mx-auto add-page">
   <h1 class="fw-bold text-center mb-4">Add Quiz Question</h1>
+  <!-- Form to add questions -->
   <form class="d-flex flex-column gap-3" action="{% url 'quiz:add_question_view' %}" method="POST">
     {% csrf_token %}
 
@@ -58,7 +60,7 @@
     />
     {{ form.choice_d.errors }}
 
-
+    <!--Choices from answerchoices -->
     <div class="d-flex gap-2 align-items-center"> 
       <h5 class="m-0 p-0">Correct Answer:</h5>
       <div class="Answer"> 
@@ -83,7 +85,7 @@
       placeholder="Explanation (optional)"
     >{{ form.explanation.value|default_if_none:'' }}</textarea>
     {{ form.explanation.errors }}
-
+    <!-- Add question button -->
     <button type="submit" class="btn btn-primary add-btn">Add Question</button>
   </form>
 </div>

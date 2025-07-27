@@ -2,7 +2,7 @@ from django.urls import path
 from . import views
 
 app_name = "eco"
-
+#urls in eco app 
 urlpatterns = [
     path("new/",views.new_action_view, name="new_action_view"),
     path("all/", views.all_action_view, name="all_action_view"),

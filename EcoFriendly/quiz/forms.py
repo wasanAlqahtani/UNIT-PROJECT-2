@@ -4,6 +4,7 @@ from quiz.models import Question
 from django import forms
 from .models import Question
 
+#Question Form for Validation 
 class QuestionForm(forms.ModelForm):
     class Meta:
         model = Question

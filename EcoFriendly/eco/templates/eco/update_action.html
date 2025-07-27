@@ -5,8 +5,11 @@ Update Action Page
 {% endblock %}
 
 {% block content %}
+<!-- Update Page -->
 <div class="col-lg-8 add-page mx-auto">
   <h1 class="fw-bold text-center mb-4">Update {{action.title}}</h1>
+
+  <!-- Update Form --> 
   <form class="d-flex flex-column gap-3" action="{% url 'eco:update_view' action.id%}" method="POST" enctype="multipart/form-data">
     {% csrf_token %}
     <input type="text" placeholder="{{action.title}}" name="title" class="form-control" value="{{action.title}}"required/>
@@ -17,7 +20,7 @@ Update Action Page
         </div>
       </div>
       <input type="file" name="image" class="form-control"/> 
-
+<!--Choose the selected one before update-->
 <h5 class="m-0 p-0">Location:</h5>
 <div class="location"> 
   {% for val, label in locationChoices %}
@@ -29,7 +32,7 @@ Update Action Page
 
 
 
-    <button type="submit" class="btn btn-primary add-btn">Add</button>
+    <button type="submit" class="btn btn-primary add-btn">Update</button>
   </form>
 </div>
 

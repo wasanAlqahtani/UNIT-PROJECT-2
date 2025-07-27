@@ -1,8 +1,8 @@
 {% extends 'main/base.html' %}
-
 {% block title %}
 Home Page
 {% endblock %}
+<!-- Home Page -->
 
 {% block content %}
   <div class="top-section"> 
@@ -10,12 +10,14 @@ Home Page
 
     <div class="tip-slider">
       <div class="tip-list">
+        <!--Display tips every few seconds -->
         {% for tip in tips %}
           <p>Reminder: {{ tip }}</p>
         {% endfor %}
       </div>
     </div>
 
+<!--Search-->
     <form class="d-flex mt-3" role="search" action="{% url 'eco:search_view' %}">
       <input class="form-control me-2" type="search" placeholder="Search..." aria-label="Search" name="search">
       <button class="btn btn-outline-success" type="submit">Search</button>
@@ -24,16 +26,19 @@ Home Page
 
 <div class="bottom-section">
   <div class="latest">
+    <!--latest action section-->
     <h3>Latest Actions</h3>
     <a href="{% url 'eco:all_action_view' %}"><h3>More <span class="material-symbols-outlined">eco</span></h3></a>
   </div>
 <br> 
+<!--loop to diplay the latest actions -->
   <div class="row latest-actions-row">
     {% for action in actions %}
       <div class="col-md-4 col-lg-3 mb-4 d-flex justify-content-center">
         <div class="card eco-card w-100">
           <img src="{{ action.image.url }}" class="card-img-top" alt="{{ action.title }}" />
           <div class="card-body">
+            <br>
             <h6 class="eco-card-title mb-2">{{ action.title }}</h6>
             <p>
               {{ action.description|truncatewords:5 }}...
@@ -41,7 +46,8 @@ Home Page
             </p>
             <p><strong>📍 {{ action.location }}</strong></p>
             {% if action.avg_rating %}
-  <p>
+  <p>  
+          <!-- Average review -->
             Average Review:
             {% if action.avg_rating|floatformat:0 == "1" %} 👍🏻 Try Harder
             {% elif action.avg_rating|floatformat:0 == "2" %} 🎉 Keep Going

@@ -1,6 +1,8 @@
 from django.db import models
 
 # Create your models here.
+
+#Question Model 
 class Question(models.Model):
     class AnswerChoices(models.TextChoices):
         ANSWERA = 'A', 'A'

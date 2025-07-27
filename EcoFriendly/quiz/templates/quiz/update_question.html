@@ -5,12 +5,13 @@ Update Quiz Question
 {% endblock %}
 
 {% block content %}
+<!--Update page -->
 <div class="col-lg-8 mx-auto add-page">
   <h1 class="fw-bold text-center mb-4">Update Quiz Question</h1>
   <form class="d-flex flex-column gap-3" action="{% url 'quiz:update_view' question.id %}" method="POST">
     {% csrf_token %}
 
-    <!-- Question Text -->
+    <!-- Inputs to update the fileds -->
     <textarea 
       name="question" 
       class="form-control" 
@@ -57,7 +58,7 @@ Update Quiz Question
       value="{{ question.choice_d }}" 
       required
     />
-
+<!-- checked the one that was choosen before and then can update -->
 <h5 class="m-0 p-0">Answer:</h5>
 <div class="location"> 
   {% for val, label in AnswerChoices %}
@@ -72,7 +73,7 @@ Update Quiz Question
       class="form-control" 
       placeholder="Explanation (optional)"
     >{{ question.explanation }}</textarea>
-
+<!-- Update Button -->
     <button type="submit" class="btn btn-success add-btn">Update Question</button>
   </form>
 </div>

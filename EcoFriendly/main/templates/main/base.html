@@ -1,8 +1,9 @@
 {%load static %}
 <!DOCTYPE html>
 <html lang="en">
-
+<!-- Base Page -->
 <head>
+  <!--Links the css and bootstrap and javascript -->
     <meta charset="UTF-8" name="viewport" content="width=device-width, initial-scale=1.0">
     <link href="{% static 'css/style.css'%}" rel="stylesheet">
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
@@ -13,28 +14,23 @@
 <link href="https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@0,100..900;1,100..900&family=Phudu:wght@300..900&family=Roboto:ital,wght@0,100..900;1,100..900&family=Ubuntu:ital,wght@0,300;0,400;0,500;0,700;1,300;1,400;1,500;1,700&display=swap" rel="stylesheet">
     <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
     <title>{% block title %} {% endblock %}</title>
-    {% block head %}
-    {% endblock %}
 </head>
  
 <!-- Body Section -->
 <body>
 <div class="page">
+  <!--Nav Bar -->
 <nav class="navbar navbar-expand-lg custom-navbar">
   <div class="container-fluid d-flex align-items-center">
-
-
     <a class="navbar-brand logo-text" href="{% url 'main:home_view' %}">EcoFriendly</a>
-
+   
     <button class="navbar-toggler ms-auto" type="button" data-bs-toggle="collapse" data-bs-target="#navbarMain"
       aria-controls="navbarMain" aria-expanded="false" aria-label="Toggle navigation">
       <span class="navbar-toggler-icon"></span>
     </button>
-
     <div class="collapse navbar-collapse" id="navbarMain">
-
-
       <ul class="navbar-nav mb-2 mb-lg-0 text-center mx-auto justify-content-center">
+        <!-- Underline the activated page (Nav Bar) -->
         <li class="nav-item">
           <a class="nav-link nav-text {% if request.resolver_match.url_name == 'home_view' %}active{% endif %}" href="{% url 'main:home_view' %}">Home</a>
         </li>
@@ -49,7 +45,7 @@
         </li>
       </ul>
 
-
+      <!--Take Challenge Button -->
       <div class="d-flex ms-auto">
         <a href="{% url 'quiz:quiz_view' %}">
           <button class="btn challenge-btn">Take challenge</button>
@@ -60,17 +56,15 @@
   </div>
 </nav>
 
-
   
-
+<!--Block content for other pages -->
 <div class="home-content"> 
-
             {% block content %}
-
             {% endblock %}
             </div>
   </div>
 
+  <!--Footer Page -->
 <footer class="bg-light py-3 footer">
   <nav class="container d-flex justify-content-between">
     <a href="{% url 'main:home_view' %}" class=" {% if request.resolver_match.url_name == 'home_view' %}active{% endif %} nav-text">EcoFriendly</a>

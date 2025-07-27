@@ -1,19 +1,20 @@
 {% extends 'main/base.html' %}
 
 {% block title %}Search Page{% endblock %}
-
+<!-- Search Page -->
 {% block content %}
 <form class="d-flex justify-content-center" method="get" action="{% url 'eco:search_view' %}">
   <div class="input-group w-75 w-md-50">
+    <!-- Label to search and button -->
     <input class="form-control form-control-lg" type="search" name="search"
            placeholder="Search for a plant..." value="{{ request.GET.search }}">
-    <button class="btn btn-success btn-dark" type="submit">Search</button>
+    <button class="btn btn-outline-success" type="submit">Search</button>
   </div>
 </form>
-
+<!-- Display the actions based on search -->
 {% if action %}
-  <h2 class="mt-4">Search Results ({{ action.count }})</h2>
-  <h5>Results for: <strong>{{ request.GET.search }}</strong></h5>
+  <h2 class="mt-4 search-result">Search Results ({{ action.count }})</h2>
+  <h5 class="search-result">Results for: <strong>{{ request.GET.search }}</strong></h5>
   <div class="row">
     {% for act in action %}
       <div class="col-md-4 col-lg-3 mb-4 d-flex align-items-stretch">

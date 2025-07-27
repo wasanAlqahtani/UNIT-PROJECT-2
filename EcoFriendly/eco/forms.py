@@ -1,6 +1,7 @@
 from django import forms
 from eco.models import Action
 
+#action form for validation 
 class ActionForm(forms.ModelForm):
     class Meta:
         model = Action
@@ -20,5 +21,4 @@ class ActionForm(forms.ModelForm):
                 'class': 'form-control',
                 'required': True
             }),
-            # location will be rendered manually as radios
         }

@@ -2,16 +2,20 @@
 {% block title %}Take Challenge{% endblock %}
 
 {% block content %}
+<!-- Take challenge Page -->
 <div class="graph"> 
 <div id="welcome-screen" class="quiz-welcome">
+  <!-- Welcoming page (sentecne)-->
   <h2>🌱 Welcome to the Eco Quiz!</h2>
   <p>Test your knowledge and help build a greener planet!</p>
+  <!--Play button to start the quiz -->
   <button id="start-btn" class="quiz-btn">Play</button>
 </div>
 
-<!-- Quiz screen -->
+<!-- Quiz Page (questions ) -->
 <div class="quiz-container" id="quiz" style="display: none;">
   <div class="quiz-header">
+    <!-- Question and answers section -->
     <h2 id="question">Question is loading...</h2>
     <ul>
       <li><input type="radio" name="answer" id="a" class="answer" />
@@ -24,114 +28,126 @@
           <label for="d" id="d_text">Answer D</label></li>
     </ul>
   </div>
+  <!-- Submit button -->
   <p id="explanation" class="quiz-explanation" style="display:none;"></p>
   <button id="submit" class="quiz-btn">Submit</button>
 </div>
 
-<!-- Result screen -->
+<!-- result page -->
 <div id="result-screen" class="quiz-result" style="display: none;">
   <h2 id="final-score"></h2>
+  <!-- Motivation sentence -->
   <p class="quiz-motivation">Our future depends on our actions today; choose sustainability. 🌍</p>
+  <!-- button to play again -->
   <button onclick="location.reload()" class="quiz-btn">Play Again</button>
 </div>
 </div>
 
+<!-- Using Java Script to handle the question one by one ( display the number if question out of total qeustion
+ q num / total,  and display the correct answer if its wrong with  explanation 
+ and count the score for the user  )-->
 <script>
+
+  // Get the questions from Django 
   const quizData = JSON.parse('{{ questions_json|escapejs }}');
-  let currentQuiz = 0;
+
+  // Start at the first question index 0 and let the score 0 to count from begining
+  let currentQuestion = 0;
   let score = 0;
-  let answered = false;
 
-  const startBtn = document.getElementById("start-btn");
-  const quizEl = document.getElementById("quiz");
-  const welcomeEl = document.getElementById("welcome-screen");
-  const resultEl = document.getElementById("result-screen");
+  const welcome = document.getElementById("welcome-screen");
+  const quizBox = document.getElementById("quiz");
+  const resultBox = document.getElementById("result-screen");
 
-  const questionEl = document.getElementById("question");
-  const answerEls = document.querySelectorAll(".answer");
-  const a_text = document.getElementById("a_text");
-  const b_text = document.getElementById("b_text");
-  const c_text = document.getElementById("c_text");
-  const d_text = document.getElementById("d_text");
-  const explanationEl = document.getElementById("explanation");
+  // Get question and answers
+  const questionText = document.getElementById("question");
+  const answers = document.querySelectorAll(".answer");
+  const aText = document.getElementById("a_text");
+  const bText = document.getElementById("b_text");
+  const cText = document.getElementById("c_text");
+  const dText = document.getElementById("d_text");
+
+  // Get explanation and button
+  const explanation = document.getElementById("explanation");
   const submitBtn = document.getElementById("submit");
+  const startBtn = document.getElementById("start-btn");
 
-  startBtn.addEventListener("click", () => {
-    welcomeEl.style.display = "none";
-    quizEl.style.display = "block";
-    loadQuiz();
-  });
+  // Start the quiz
+  startBtn.onclick = function() {
+    welcome.style.display = "none";
+    quizBox.style.display = "block";
+    showQuestion();
+  };
 
-  function deselectAnswers() {
-    answerEls.forEach((el) => (el.checked = false));
-  }
+  // Show the  question
+  function showQuestion() {
+    answers.forEach(a => a.checked = false);
+    explanation.style.display = "none";
 
-  function getSelected() {
-    let answer = undefined;
-    answerEls.forEach((el) => {
-      if (el.checked) answer = el.id;
-    });
-    return answer;
-  }
-
-  function loadQuiz() {
-    deselectAnswers();
-    explanationEl.style.display = "none";
-    explanationEl.className = "";
-    explanationEl.innerHTML = "";
-    answered = false;
-
-    const q = quizData[currentQuiz];
-    questionEl.innerText = `Question ${currentQuiz + 1} / ${quizData.length}\n\n${q.question}`;
-    a_text.innerText = q.choices.a;
-    b_text.innerText = q.choices.b;
-    c_text.innerText = q.choices.c;
-    d_text.innerText = q.choices.d;
+    let q = quizData[currentQuestion];
+    questionText.innerText = `Question ${currentQuestion + 1}/${quizData.length}\n\n${q.question}`;
+    aText.innerText = q.choices.a;
+    bText.innerText = q.choices.b;
+    cText.innerText = q.choices.c;
+    dText.innerText = q.choices.d;
 
     submitBtn.innerText = "Submit";
   }
 
-  submitBtn.addEventListener("click", () => {
-    if (answered) {
-      currentQuiz++;
-      if (currentQuiz < quizData.length) {
-        loadQuiz();
+  // get the select answer 
+  function getSelected() {
+    for (let a of answers) {
+      if (a.checked) return a.id;
+    }
+    return null;
+  }
+
+  let isAnswered = false;
+
+  // When  Submit / Next buttens where clicked 
+  submitBtn.onclick = function() {
+    if (isAnswered) {
+      // Move to next question if the next button 
+      currentQuestion++;
+      // check if there still questions 
+      if (currentQuestion < quizData.length) {
+        isAnswered = false;
+        showQuestion();
       } else {
-        quizEl.style.display = "none";
-        resultEl.style.display = "block";
+        // Show result if no more question 
+        quizBox.style.display = "none";
+        resultBox.style.display = "block";
         document.getElementById("final-score").innerText =
-          `You scored ${score}/${quizData.length} correct answers!`;
+          `You got ${score} out of ${quizData.length} correct!`;
       }
       return;
     }
-
-    const selected = getSelected();
+    // if the user didnt select answer 
+    let selected = getSelected();
     if (!selected) {
-      alert("Please select an answer!");
+      alert("Please choose an answer!");
       return;
     }
 
-    const currentData = quizData[currentQuiz];
-    if (selected === currentData.correct) {
+    //check the answers 
+    let q = quizData[currentQuestion];
+    if (selected === q.correct) {
       score++;
-      explanationEl.className = "correct";
-      explanationEl.innerText = "Correct!";
+      explanation.className = "correct";
+      explanation.innerText = "Correct!!";
     } else {
-      explanationEl.className = "wrong";
-      // Show "Wrong answer!" then correct answer in green, and explanation
-      const correctAnswerText = currentData.choices[currentData.correct];
-      explanationEl.innerHTML = `
-        Wrong answer!<br>
-        <span id="correct-answer">Correct answer: ${correctAnswerText}</span><br>
-        Explanation: ${currentData.explanation}
-      `;
+      explanation.className = "wrong";
+      explanation.innerHTML = `❌ Wrong!<br>
+        <span id="correct-answer">Correct answer: ${q.choices[q.correct]}</span><br>
+        Explanation: ${q.explanation}`;
     }
 
-    explanationEl.style.display = "block";
-    answered = true;
-    submitBtn.innerText = currentQuiz < quizData.length - 1 ? "Next" : "Finish";
-  });
+    explanation.style.display = "block";
+    submitBtn.innerText = (currentQuestion === quizData.length - 1) ? "Finish" : "Next";
+    isAnswered = true;
+  };
 </script>
+
 {% endblock %}
 
 

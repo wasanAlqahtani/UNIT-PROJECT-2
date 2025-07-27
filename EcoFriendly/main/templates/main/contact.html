@@ -5,12 +5,12 @@ Contact Page
 {% endblock %}
 
 {% block content %}
-
+<!-- Contact Page -->
     <div class="col-lg-6 mx-auto contact">
      <h1 class="fw-bold">Contact us</h1>
       <form action="{% url 'main:contact_view' %}" method="POST" enctype="multipart/form-data" class="d-flex flex-column gap-3">
         {% csrf_token %}
-
+<!-- Contact Form -->
         <div class="row">
           <div class="col">
             <label class="form-label">First name</label>
@@ -35,6 +35,7 @@ Contact Page
       </form>
       
       <br>
+      <!-- Send message for the user that the message send successfully -->
       {% if messages %}
         {% for message in messages %}
           <div class="alert alert-success">
