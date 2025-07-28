@@ -11,29 +11,40 @@
     <button class="btn btn-outline-success" type="submit">Search</button>
   </div>
 </form>
-<!-- Display the actions based on search -->
 {% if action %}
   <h2 class="mt-4 search-result">Search Results ({{ action.count }})</h2>
   <h5 class="search-result">Results for: <strong>{{ request.GET.search }}</strong></h5>
-  <div class="row">
+<div class="row latest-actions-row">
     {% for act in action %}
-      <div class="col-md-4 col-lg-3 mb-4 d-flex align-items-stretch">
-        <div class="card border-0 shadow-sm">
-          <img src="{{ act.image.url }}" class="card-img-top" style="height: 200px; object-fit: cover;">
+      <div class="col-md-4 col-lg-3 mb-4 d-flex">
+        <div class="card eco-card">
+          <img src="{{ act.image.url }}" class="card-img-top" alt="{{ act.title }}" />
           <div class="card-body">
-            <a href="{% url 'eco:detail_view' act.id %}" class="text-decoration-none">
-              <h6 class="fw-bold mb-1 text-dark">{{ act.title }}</h6>
-            </a>
-            <p class="text-muted mb-1">
+            <br>
+            <h6 class="eco-card-title mb-2">{{ act.title }}</h6>
+            <p>
               {{ act.description|truncatewords:5 }}...
-              <a href="{% url 'eco:detail_view' act.id %}" class="text-decoration-none text-dark">Read more</a>
+              <a href="{% url 'eco:detail_view' act.id %}" class="text-decoration-none text-success">Read more</a>
             </p>
-            <p class="fw-semibold">{{ act.location }}</p>
+            <p><strong>📍 {{ act.location }}</strong></p>
+             {% if act.avg_rating %}
+            <p> 
+     <!-- Print the average based on AVG library -->
+            Average Review:
+            {% if act.avg_rating|floatformat:0 == "1" %} 👍🏻 Try Harder
+            {% elif act.avg_rating|floatformat:0 == "2" %} 🎉 Keep Going
+            {% elif act.avg_rating|floatformat:0 == "3" %} 🤩 Nice Job
+            {% elif act.avg_rating|floatformat:0 == "4" %} 🥇 Excellent
+            {% endif %}
+          </p>
+            {% else %}
+              <p>Average Review: No ratings yet</p>
+            {% endif %}
           </div>
         </div>
       </div>
     {% endfor %}
-  </div>
+</div>
 {% else %}
   <h5 class="mt-4 text-danger">No results found for "{{ request.GET.search }}"</h5>
 {% endif %}

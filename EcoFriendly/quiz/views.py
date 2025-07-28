@@ -54,9 +54,10 @@ def quiz_view(request: HttpRequest):
     questions = Question.objects.all()
     #convert the model object to list inside it dictionary to let java script handle it using json 
     #to read it well and can handle it and display one question per page and count the total 
-    questions_data = [
-        {
-            'id': q.id,
+    questions_data = []
+    for q in questions:
+         questions_data.append({
+              'id': q.id,
             'question': q.question,
             'choices': {
                 'a': q.choice_a,
@@ -66,10 +67,7 @@ def quiz_view(request: HttpRequest):
             },
             'correct': q.correct_choice.lower(),
             'explanation': q.explanation or "",
-        }
-        for q in questions
-    ]
-
+         })
     return render(request, 'quiz/quiz.html', {
         'questions_json': json.dumps(questions_data),
     })

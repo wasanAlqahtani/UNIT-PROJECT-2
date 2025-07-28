@@ -57,7 +57,8 @@
 }
 
 .challenge-btn:hover {
-  background-color: #1b5e20 !important;
+  background-color: #e0f2e9 !important;
+  color: #145235 !important;
 }
 /*---------------------------------------------------------------*/
 
@@ -185,14 +186,19 @@
   padding: 2rem;
   background-color: #fff;
   border-radius: 1rem;
-  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
 }
 /* button style */
 .submit-btn {
   background-color: #198754 !important;
   border: none !important;
-  color: white;
+  color: white !important;
 }
+
+.submit-btn:hover{
+  background-color: #e0f2e9 !important;
+  color: #145235 !important;
+}
+
 /*---------------------------------------------------------------*/ 
 
 /* Add Action Page  Style */
@@ -224,6 +230,11 @@
 .add-btn {
   background-color: #198754 !important;
   border: none !important;
+}
+
+.add-btn:hover{
+  background-color: #e0f2e9 !important;
+  color: #145235 !important;
 }
 /*---------------------------------------------------------------*/ 
 
@@ -277,6 +288,12 @@
 .btn.filter{
   background-color: #198754 ;
 }
+
+.btn.filter:hover{
+  background-color: #e0f2e9 !important;
+  color: #145235 !important;
+}
+
 .pagination .page-link {
   color: #145235;
   border: 1px solid #145235;
@@ -312,6 +329,18 @@
   font-weight: 600;
   color: #198754;
 } 
+
+/*---------------------------------------------------------------*/
+
+/*comment form style */
+.add-comment form{
+  width: 100%;
+  max-width: 100%;
+  height: 100%;
+  padding: 2rem;
+  background-color: #fff;
+  border-radius: 1rem;
+}
 /*---------------------------------------------------------------*/ 
 
 /* messages Page  Style */
@@ -344,6 +373,17 @@
 .btn-primary.add{
     background-color: #198754  ;
 }
+
+.btn-primary.update:hover{
+  background-color: #e0f2e9 !important;
+  color: #145235 !important;
+}
+
+.btn-primary.add:hover{
+  background-color: #e0f2e9 !important;
+  color: #145235 !important;
+}
+
 /*---------------------------------------------------------------*/ 
 
 /* Take Challenge Page  Style */
@@ -399,16 +439,15 @@
   border: none;
   padding: 12px 28px;
   border-radius: 6px;
-  font-weight: bold;
   font-size: 1.1rem;
   cursor: pointer;
-  transition: background-color 0.3s ease;
   margin-top: 1rem;
   user-select: none;
 }
 
 .quiz-btn:hover {
-  background-color: #157347;
+  background-color: #e0f2e9 !important;
+  color: #145235 !important;
 }
 
 /*score text style e*/

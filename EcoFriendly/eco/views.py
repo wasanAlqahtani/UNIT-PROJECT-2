@@ -124,6 +124,6 @@ def search_view(request:HttpRequest):
          # actions based on the search 
          action= Action.objects.filter(
     Q(title__icontains=query) | Q(location__icontains=query)
-)
+    ).annotate(avg_rating=Avg('comment__rating'))
     return render(request, "eco/search.html", {"action": action})
 

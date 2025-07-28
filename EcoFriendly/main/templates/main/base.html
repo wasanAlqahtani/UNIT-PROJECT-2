@@ -8,6 +8,7 @@
     <link href="{% static 'css/style.css'%}" rel="stylesheet">
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.10.5/font/bootstrap-icons.css">
     <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined" />
     <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -64,13 +65,22 @@
             </div>
   </div>
 
-  <!--Footer Page -->
-<footer class="bg-light py-3 footer">
-  <nav class="container d-flex justify-content-between">
-    <a href="{% url 'main:home_view' %}" class=" {% if request.resolver_match.url_name == 'home_view' %}active{% endif %} nav-text">EcoFriendly</a>
-    <a href="{% url 'main:messages_view' %}" class=" {% if request.resolver_match.url_name == 'messages_view' %}active{% endif %} nav-text">Messages</a>
-    <a href="{% url 'quiz:all_question_view' %}" class=" {% if request.resolver_match.url_name == 'all_question_view' %}active{% endif %} nav-text">Question Managment</a>
-  </nav>
+<footer class="bg-light py-3 border-top">
+  <div class="container d-flex justify-content-between align-items-center">
+    <div class="d-flex align-items-center">
+      <a href="{% url 'main:home_view' %}" class=" {% if request.resolver_match.url_name == 'home_view' %}active{% endif %} nav-text">
+      <span class="text-muted small">© 2025 EcoFriendly</span>
+      </a>
+    </div>
+    <div class="d-flex gap-3">
+      <a href="#" class="text-muted" aria-label="Instagram">
+        <i class="bi bi-instagram fs-5"></i>
+      </a>
+      <a href="#" class="text-muted" aria-label="Facebook">
+        <i class="bi bi-facebook fs-5"></i>
+      </a>
+    </div>
+  </div>
 </footer>
 
 </body>
