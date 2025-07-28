@@ -2,8 +2,8 @@
 
 ## Project Name : EcoFriendly Website 
 
- EcoFriendly is an interactive platform where everyone: students, educators, and community members 
- can come together to share, explore, and promote eco-friendly actions that support a sustainable future.
+ EcoFriendly is an interactive platform where everyone: students, educators, and community members, etc..  
+ can come together to share, explore, and promote eco-friendly actions that support a sustainable future. And they can take challenge to test there Knowledge. 
 
 
 ## Website Features 
@@ -32,15 +32,13 @@
   - Contact Page: 
     - Send questions, suggestions, or messages to the site admins. 
 
- - Messages Page: 
+ - Messages Page (go to this page using url:  /contact/messages): 
     - View all Messages from users. 
 
- - Question Managment: 
+ - Question Managment Page (go to this page using url:  /quiz/all): 
    - View all quiz questions. 
    - Update and delete specific question. 
    - Add new question. 
-
-
 
 
 ## User Stories 
@@ -51,7 +49,6 @@ link: https://docs.google.com/document/d/17kAhMDzUCDZ8cJQ0ih_mPhp9vtsHdGObLB6jVi
 
 ## WireFrame 
 link: https://docs.google.com/document/d/17kAhMDzUCDZ8cJQ0ih_mPhp9vtsHdGObLB6jViiUyRU/edit?usp=sharing
-
 
 
 
