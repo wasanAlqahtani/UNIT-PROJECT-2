@@ -27,6 +27,7 @@ SECRET_KEY = 'django-insecure-i2&$g%mwiq+*%h6-#g5d41k#1$dox_rl#q=-ks2nv8)x-w^0z#
 DEBUG = True
 
 ALLOWED_HOSTS = ["*"]
+CSRF_TRUSTED_ORIGINS = ["https://ecofriendly-production.up.railway.app","http://127.0.0.1"]
 
 
 
